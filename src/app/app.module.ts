@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { LoginModule } from './login/login.module';
 import { FeedbackModule } from './feedback/feedback.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FeedbackModule } from './feedback/feedback.module';
     AppRoutingModule,
     LayoutModule,
     LoginModule,
-    FeedbackModule
+    FeedbackModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

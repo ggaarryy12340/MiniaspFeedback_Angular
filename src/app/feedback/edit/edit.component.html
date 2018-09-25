@@ -1,16 +1,55 @@
 <div class="editor-page">
   <div class="container page">
     <div class="row">
-
       <div class="col-md-10 col-md-offset-1 col-xs-12">
-        <form>
+        <!-- <h1>課後心得回饋：Angular 練功坊：從入門到進階 (平日班) - 入門實作班</h1> -->
+        <form #editForm="ngForm">
           <fieldset class="form-group">
-            <input class="form-control form-control-lg" type="text" placeholder="Post Title">
+            <h5>學員姓名</h5>
+            <input name="Name" class="form-control form-control-lg" type="text" placeholder="此欄位非必填，可匿名填寫。如需具名也請填寫您在報名課程時的姓名。"
+              #Name="ngModel" [(ngModel)]="feedback.name">
           </fieldset>
           <fieldset class="form-group">
-            <textarea class="form-control" rows="8" placeholder="Write your post (in markdown)"></textarea>
+            <h5>一、請寫下本課程的心得與收穫</h5>
+            <textarea class="form-control" rows="8" placeholder="您的回答" name="Experience" #Experience="ngModel"
+              [(ngModel)]="feedback.experience"
+              required>
+            </textarea>
+            <div *ngIf="Experience.touched && Experience.invalid">
+              <span *ngIf="Experience.errors['required']">此欄位為必填欄位</span>
+              <!-- <span *ngIf="Experience.errors['minlength']">10</span> -->
+            </div>
           </fieldset>
           <fieldset class="form-group">
+            <h5>二、本課程所學，您預計如何運用於工作上？</h5>
+            <textarea class="form-control" rows="8" placeholder="您的回答" name="HowToWork" #HowToWork="ngModel"
+              [(ngModel)]="feedback.howToWork"
+              required>>
+            </textarea>
+            <div *ngIf="HowToWork.touched && HowToWork.invalid">
+              <span *ngIf="HowToWork.errors['required']">此欄位為必填欄位</span>
+              <!-- <span *ngIf="HowToWork.errors['minlength']">10</span> -->
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <h5>三、請提供您對於本次或未來課程上的建議？</h5>
+            <textarea class="form-control" rows="8" placeholder="您的回答" name="Suggestion" #Suggestion="ngModel"
+              [(ngModel)]="feedback.suggestion" required></textarea>
+          </fieldset>
+          <div *ngIf="Suggestion.touched && Suggestion.invalid">
+            <span *ngIf="Suggestion.errors['required']">此欄位為必填欄位</span>
+            <!-- <span *ngIf="Suggestion.errors['minlength']">10</span> -->
+          </div>
+          <fieldset class="form-group">
+            <h5>四、如果未來開辦其他 Angular 相關課程，請問你最想學習哪些內容？</h5>
+            <textarea class="form-control" rows="8" placeholder="您的回答" name="WantToLearn" #WantToLearn="ngModel"
+              [(ngModel)]="feedback.wantToLearn" required></textarea>
+          </fieldset>
+          <div *ngIf="WantToLearn.touched && WantToLearn.invalid">
+            <span *ngIf="WantToLearn.errors['required']">此欄位為必填欄位</span>
+            <!-- <span *ngIf="WantToLearn.errors['minlength']">10</span> -->
+          </div>
+          <!-- <fieldset class="form-group">
             <input class="form-control" type="text" placeholder="Enter tags">
             <div class="tag-list">
               <span class="label label-pill label-default">
@@ -20,10 +59,12 @@
               <span class="label label-pill label-default">
                 <i class="ion-close-round"></i> webdev</span>
             </div>
-          </fieldset>
-          <button type="button" class="btn btn-lg btn-primary pull-xs-right">
-            Create Post
-          </button>
+          </fieldset> -->
+          <!-- <button type="button" class="btn btn-lg btn-primary pull-xs-right" (click) = "doSubmit()" [disabled]="createForm.invalid"> -->
+
+          <button type="button" class="btn btn-lg btn-warning pull-xs-right" (click)="doReset(editForm)">清空</button>
+
+          <button type="submit" class="btn btn-lg btn-primary pull-xs-right" (click)="doEdit()" [disabled]="editForm.invalid">送出編輯</button>
         </form>
       </div>
 

@@ -1,0 +1,39 @@
+<div class="auth-page">
+  <div class="container page">
+    <div class="row">
+
+      <div class="col-md-6 col-md-offset-3 col-xs-12">
+        <h1 class="text-xs-center">後台登入</h1>
+
+        <form #loginForm="ngForm">
+          <fieldset class="form-group" [ngClass]="{'has-danger': userName.darty && userName.invalid}">
+            <input name="userName" class="form-control form-control-lg" type="userName" placeholder="請輸入UserName"
+              [(ngModel)]="loginData.userName" #userName="ngModel" required>
+
+            <span *ngIf="userName.dirty && userName.invalid">
+              <span *ngIf="userName.errors['required']">
+                *請輸入userName
+              </span>
+            </span>
+          </fieldset>
+
+          <fieldset class="form-group" [ngClass]="{'has-danger': password.darty && password.invalid}">
+            <input name="password" class="form-control form-control-lg" type="password" placeholder="請輸入password"
+              [(ngModel)]="loginData.password" #password="ngModel" required>
+
+            <span *ngIf="password.dirty && password.invalid">
+              <span *ngIf="password.errors['required']">
+                *請輸入password
+              </span>
+            </span>
+          </fieldset>
+
+          <button class="btn btn-lg btn-primary pull-xs-right" (click)="doLogin()" [disabled]="loginForm.invalid">
+            登入
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Feedback } from '../../model/feedback';
 import { ActivatedRoute, Router} from '@angular/router'
 import { NgForm } from '@angular/forms';
+import { FeedbackService } from '../../services/feedback.service';
 
 @Component({
   selector: 'app-edit',
@@ -11,7 +12,7 @@ import { NgForm } from '@angular/forms';
 })
 export class EditComponent implements OnInit {
 
-  constructor(private http : HttpClient, private route : ActivatedRoute, private router: Router) { }
+  constructor(private http : HttpClient, private route : ActivatedRoute, private router: Router, private feedbackService : FeedbackService) { }
 
   ngOnInit() {
     this.route.params.subscribe(query => {
@@ -44,10 +45,7 @@ export class EditComponent implements OnInit {
   }
 
   doEdit() {
-    this.http.put('http://localhost:55643/api/Feedbacks/' + this.id, this.feedback).subscribe(
-      res => console.log(res)
-    );
-
+    this.feedbackService.Edit(this.id, this.feedback);
     alert('修改成功');
     this.router.navigate(['/feedback', 'edit', this.id]);
   }

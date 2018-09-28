@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Feedback } from '../../model/feedback';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ExportService } from '../../export.service';
+import { ExportService } from '../../services/export.service';
+import { FeedbackService } from '../../services/feedback.service';
 
 @Component({
   selector: 'app-list',
@@ -11,25 +12,19 @@ import { ExportService } from '../../export.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router, private exportService : ExportService) { }
+  constructor(private http: HttpClient, private router: Router, private exportService : ExportService, private feedbackService : FeedbackService) { }
 
    feedbackList : Feedback[];
 
   ngOnInit() {
-    this.http.get<Feedback[]>('http://localhost:55643/api/Feedbacks').subscribe((res : Feedback[]) => {
+    this.feedbackService.getAll().subscribe(res => {
       this.feedbackList = res;
-    })
+    });
   }
 
   doDelete(id : number) {
-    this.http.delete('http://localhost:55643/api/Feedbacks/' + id.toString() ).subscribe((res) => {
-      if(res['id'] == id){
-        alert('刪除成功');
-      }else{
-        alert('刪除失敗');
-      }
-      location.reload();
-    })
+    this.feedbackService.delete(id);
+    location.reload();
   }
 
   doExport() {

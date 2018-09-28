@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Feedback } from '../../model/feedback';
+import { FeedbackService } from '../../services/feedback.service';
 
 @Component({
   selector: 'app-create',
@@ -11,15 +12,13 @@ import { Feedback } from '../../model/feedback';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private http: HttpClient, private activatedRoute: ActivatedRoute, private feedbackSvc : FeedbackService) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(query => {
       this.feedback.TicketID = query['TicketID'];
     })
   };
-
-  // feedback : Feedback
 
   feedback = {
     TicketID: '',
@@ -44,10 +43,7 @@ export class CreateComponent implements OnInit {
 
   doSubmit() {
     //將feedback存入資料庫
-    this.http.post('http://localhost:55643/api/Feedbacks', this.feedback).subscribe(
-      res => console.log(res)
-    );
-
+    this.feedbackSvc.create(this.feedback);
     this.router.navigate(['/end']);
   }
 

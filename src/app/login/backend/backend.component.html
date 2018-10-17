@@ -6,12 +6,12 @@
         <h1 class="text-xs-center">後台登入</h1>
 
         <form #loginForm="ngForm">
-          <fieldset class="form-group" [ngClass]="{'has-danger': userName.darty && userName.invalid}">
-            <input name="userName" class="form-control form-control-lg" type="userName" placeholder="請輸入UserName"
-              [(ngModel)]="loginData.userName" #userName="ngModel" required>
+          <fieldset class="form-group" [ngClass]="{'has-danger': userId.darty && userId.invalid}">
+            <input name="userId" class="form-control form-control-lg" type="userId" placeholder="請輸入userId"
+              [(ngModel)]="loginData.userId" #userId="ngModel" required>
 
-            <span *ngIf="userName.dirty && userName.invalid">
-              <span *ngIf="userName.errors['required']">
+            <span *ngIf="userId.dirty && userId.invalid">
+              <span *ngIf="userId.errors['required']">
                 *請輸入userName
               </span>
             </span>

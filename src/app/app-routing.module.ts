@@ -7,6 +7,7 @@ import { EditComponent } from './feedback/edit/edit.component';
 import { CreateComponent } from './feedback/create/create.component';
 import { EndComponent } from './feedback/end/end.component';
 import { BackendComponent } from './login/backend/backend.component';
+import { LoginRoutingGuardGuard } from "./login-routing-guard.guard";
 
 // const routes: Routes = [
 //   {
@@ -74,15 +75,15 @@ const routes: Routes = [
       },
       {
         path: 'list',
-        component: ListComponent
+        component: ListComponent, canActivate:[LoginRoutingGuardGuard]
       },
       {
         path: 'edit/:id',
-        component: EditComponent
+        component: EditComponent, canActivate:[LoginRoutingGuardGuard]
       },
       {
         path: 'create',
-        component: CreateComponent
+        component: CreateComponent, canActivate:[LoginRoutingGuardGuard]
       }
     ]
   }

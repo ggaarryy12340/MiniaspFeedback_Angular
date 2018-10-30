@@ -43,8 +43,13 @@ export class CreateComponent implements OnInit {
 
   doSubmit() {
     //將feedback存入資料庫
-    this.feedbackSvc.create(this.feedback);
-    this.router.navigate(['/end']);
+    this.feedbackSvc.create(this.feedback).subscribe(res => {
+      console.log(res);
+      this.router.navigate(['/end']);
+    },error => {
+      console.log(error);
+      alert('發生錯誤');
+    });
   }
 
 }

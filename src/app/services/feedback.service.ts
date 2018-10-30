@@ -15,24 +15,14 @@ export class FeedbackService {
   }
 
   delete(id : number) {
-    this.http.delete('http://localhost:55643/api/Feedbacks/' + id.toString() ).subscribe((res) => {
-      if(res['id'] == id){
-        alert('刪除成功');
-      }else{
-        alert('刪除失敗');
-      }
-    })
+    return this.http.delete('http://localhost:55643/api/Feedbacks/' + id.toString());
   }
 
   create(feedback) {
-    this.http.post('http://localhost:55643/api/Feedbacks', feedback).subscribe(
-      res => console.log(res)
-    );
+    return this.http.post('http://localhost:55643/api/Feedbacks', feedback)
   }
 
   Edit(id : string, feedback : Feedback) {
-    this.http.put('http://localhost:55643/api/Feedbacks/' + id, feedback).subscribe(
-      res => console.log(res)
-    );
+    return this.http.put('http://localhost:55643/api/Feedbacks/' + id, feedback);
   }
 }

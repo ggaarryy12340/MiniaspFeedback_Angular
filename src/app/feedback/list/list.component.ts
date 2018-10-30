@@ -23,8 +23,14 @@ export class ListComponent implements OnInit {
   }
 
   doDelete(id : number) {
-    this.feedbackService.delete(id);
-    location.reload();
+    this.feedbackService.delete(id).subscribe((res) => {
+      if(res['id'] == id){
+        alert('刪除成功');
+      }else{
+        alert('刪除失敗');
+      }
+      location.reload();
+    });
   }
 
   doExport() {

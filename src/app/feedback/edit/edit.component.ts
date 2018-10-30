@@ -45,9 +45,14 @@ export class EditComponent implements OnInit {
   }
 
   doEdit() {
-    this.feedbackService.Edit(this.id, this.feedback);
-    alert('修改成功');
-    this.router.navigate(['/feedback', 'edit', this.id]);
+    this.feedbackService.Edit(this.id, this.feedback).subscribe(res => {
+      alert('修改成功');
+      this.router.navigate(['/feedback', 'edit', this.id]);
+    },(error) => {
+      alert('修改失敗');
+      console.log(error);
+    });
+
   }
 
 

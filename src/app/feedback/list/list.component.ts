@@ -30,7 +30,9 @@ export class ListComponent implements OnInit {
         alert('刪除失敗');
       }
       location.reload();
-    });
+    },
+    err => alert("刪除失敗")
+    );
   }
 
   doExport() {

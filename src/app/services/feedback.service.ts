@@ -22,6 +22,10 @@ export class FeedbackService {
     return this.http.post('http://localhost:55643/api/Feedbacks', feedback)
   }
 
+  getSingle(id) {
+    return this.http.get<Feedback>('http://localhost:55643/api/Feedbacks/' + id);
+  }
+
   Edit(id : string, feedback : Feedback) {
     return this.http.put('http://localhost:55643/api/Feedbacks/' + id, feedback);
   }

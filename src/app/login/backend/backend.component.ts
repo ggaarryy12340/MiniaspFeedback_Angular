@@ -31,7 +31,7 @@ export class BackendComponent implements OnInit {
 
       if(this.loginOutput.uToken != null){
         //將UToken放入Cookie中
-        this.cookiesHelper.setCookie('uToken', this.loginOutput.uToken, 20*60*1000)
+        this.cookiesHelper.setCookie('uToken', this.loginOutput.uToken, 120*60*1000)//2 hours
         this.router.navigate(['/feedback/list']);
       }
       else{

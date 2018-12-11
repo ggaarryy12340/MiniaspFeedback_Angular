@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Feedback } from '../../model/feedback';
 import { ActivatedRoute, Router} from '@angular/router'
 import { NgForm } from '@angular/forms';
@@ -19,9 +19,15 @@ export class EditComponent implements OnInit {
       this.id = query['id'];
     })
 
-    this.http.get<Feedback>('http://localhost:55643/api/Feedbacks/' + this.id ).subscribe((res : Feedback) => {
-      this.feedback = res;
-    })
+    this.feedbackService.getSingle(this.id).subscribe(
+      (res : Feedback) => {
+        this.feedback = res;
+      },(err : HttpErrorResponse) => {
+        console.log(err);
+        this.router.navigate(['/feedback']);
+        alert("錯誤的Request");
+      }
+    )
   }
 
   feedback : Feedback;

@@ -9,44 +9,6 @@ import { EndComponent } from './feedback/end/end.component';
 import { BackendComponent } from './login/backend/backend.component';
 import { LoginRoutingGuardGuard } from "./login-routing-guard.guard";
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: MainComponent,
-//     children: [
-//       {
-//         path: '',
-//         redirectTo: 'list',
-//         pathMatch: 'full'
-//       },
-//       {
-//         path: 'list',
-//         component: ListComponent
-//       },
-//       {
-//         path: 'edit/:id',
-//         component: EditComponent
-//       },
-//       {
-//         path: 'create',
-//         component: CreateComponent
-//       }
-//     ]
-//   },
-//   {
-//     path: 'login',
-//     component: AuthComponent
-//   },
-//   {
-//     path: 'end',
-//     component: EndComponent
-//   },
-//   {
-//     path: 'backendLogin',
-//     component: BackendComponent
-//   }
-// ];
-
 const routes: Routes = [
   {
     path: '',
@@ -75,15 +37,17 @@ const routes: Routes = [
       },
       {
         path: 'list',
-        component: ListComponent, canActivate:[LoginRoutingGuardGuard]
+        component: ListComponent,
+        canActivate:[LoginRoutingGuardGuard]
       },
       {
         path: 'edit/:id',
-        component: EditComponent, canActivate:[LoginRoutingGuardGuard]
+        component: EditComponent,
+        canActivate:[LoginRoutingGuardGuard]
       },
       {
         path: 'create',
-        component: CreateComponent, canActivate:[LoginRoutingGuardGuard]
+        component: CreateComponent
       }
     ]
   }
